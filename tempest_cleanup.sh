@@ -50,7 +50,7 @@ for i in ${list} ; do neutron net-delete ${i} ;  done ;
 
 function delete_cinder_backup {
 echo "delete cinder backups:"
-list=`cinder backup-list  |  awk '{ print $2 }'  | ${exclude_empty} | ${exclude_id}`
+list=`cinder backup-list --all-tenants  |  awk '{ print $2 }'  | ${exclude_empty} | ${exclude_id}`
 for i in ${list} ; do cinder backup-delete ${i} ;  done ;
 }
 
