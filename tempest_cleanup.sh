@@ -121,11 +121,11 @@ delete_interfaces_from_routers
 delete_ports
 delete_routers
 delete_networks
-delete_encrypted_types
-delete_type_volumes
 delete_cinder_backup
 delete_cinder_snapshot
 delete_volumes
+delete_encrypted_types
+delete_type_volumes
 delete_images
 delete_neutron_security_groups
 delete_security_groups
