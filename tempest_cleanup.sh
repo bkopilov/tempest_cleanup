@@ -29,7 +29,7 @@ for i in ${list} ; do neutron port-delete ${i} ;  done ;
 }
 
 function delete_interfaces_from_routers {
-routers=`neutron router-list --all-tenants | awk '{print $2}' | ${exclude_empty} | ${exclude_id}`
+routers=`neutron router-list --all-tenants | awk '{print $2}' | ${exclude_empty} | ${exclude_id} | grep -v "fixed"  `
 for i in ${routers} ; do
 neutron router-gateway-clear ${i}
 interfaces=`neutron router-port-list ${i} | awk '{print $8}' | grep -v "^$"  | sed 's/"//g' | sed 's/,//g';`
