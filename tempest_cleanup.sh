@@ -3,7 +3,8 @@
 
 #!/usr/bin/env bash
 # source keystonerc
-source $1
+if [ -z ${$1} ]; then exit 1;
+else source $1; fi
 echo "start clean"
 
 exclude_empty='grep -v ^$'
