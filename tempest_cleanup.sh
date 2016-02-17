@@ -3,7 +3,7 @@
 
 #!/usr/bin/env bash
 # source keystonerc
-if [ -z ${$1} ]; then exit 1;
+if [ -z ${1} ]; then echo "Missing keystonerc arg"; exit 1;
 else source $1; fi
 echo "start clean"
 
