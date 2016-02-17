@@ -2,7 +2,8 @@
 # clean_up tempest
 
 #!/usr/bin/env bash
-source /root/keystonerc_admin
+# source keystonerc
+source $1
 echo "start clean"
 
 exclude_empty='grep -v ^$'
