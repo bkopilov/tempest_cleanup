@@ -31,10 +31,10 @@ for i in ${list} ; do echo delete: $i; neutron port-delete ${i} ;  done ;
 function delete_interfaces_from_routers {
 routers=`neutron router-list --all-tenants | awk '{print $2}' | ${exclude_empty} | ${exclude_id} | grep -v "fixed"  `
 for i in ${routers} ; do
-do echo delete gateway_router: $i; neutron router-gateway-clear ${i}
+echo delete: $i; neutron router-gateway-clear ${i}
 interfaces=`neutron router-port-list ${i} | awk '{print $8}' | grep -v "^$" | grep -v "fixed" | sed 's/"//g' | sed 's/,//g';`
 for k in ${interfaces} ; do
-do echo delete interface: $k ;neutron router-interface-delete ${i} ${k}; done; done;
+echo deletee: $k ;neutron router-interface-delete ${i} ${k}; done; done;
 }
 
 function delete_routers {
