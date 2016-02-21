@@ -104,7 +104,7 @@ for i in ${list} ; do  echo delete $i;  keystone tenant-delete ${i} ;  done ;
 function delete_users {
 echo "delete users:"
 list=`keystone user-list| grep "[0-9A-Za-z]-" |  awk '{ print $2 }'  | ${exclude_empty} | ${exclude_id}| grep -v demo`
-for i in ${list} ; echo delete $i;  do keystone user-delete ${i} ;done
+for i in ${list} ; do echo delete $i keystone user-delete ${i} ;done
 }
 
 function delete_aggregate {
