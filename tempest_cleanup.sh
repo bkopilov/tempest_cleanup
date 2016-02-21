@@ -25,7 +25,7 @@ for i in ${list} ; do echo "delete:" $i; neutron floatingip-delete ${i} ;  done 
 function delete_ports {
 echo "delete ports:"
 list=`neutron port-list |  awk '{ print $2 }'  | ${exclude_empty} | ${exclude_id}`
-for i in ${list} ; do do echo "delete:" $i; neutron port-delete ${i} ;  done ;
+for i in ${list} ; do echo "delete:" $i; neutron port-delete ${i} ;  done ;
 }
 
 function delete_interfaces_from_routers {
