@@ -42,7 +42,7 @@ for i in ${list} ; do neutron router-gateway-clear ${i}; neutron router-delete $
 
 function delete_networks {
 echo "# delete networks #"
-list=`neutron net-list --all-tenants |  ${exclude_empty} | ${exclude_id} |grep -v nova | grep -v private | grep -v tenant |  awk '{ print $2 }'  `
+list=`neutron net-list --all-tenants |  ${exclude_empty} | ${exclude_id} | awk '{ print $2 }'  `
 for i in ${list} ; do echo delete network $i; neutron net-delete ${i} ;  done ;
 }
 
