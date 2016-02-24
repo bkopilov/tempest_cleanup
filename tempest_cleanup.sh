@@ -1,10 +1,8 @@
 
-# clean_up tempest
-
 #!/usr/bin/env bash
 # source keystonerc
-if [ -z ${1} ]; then echo "Missing keystonerc arg"; exit 1;
-else source $1; fi
+source /home/stack/overcloudrc
+
 echo "start clean"
 
 exclude_empty='grep -v ^$'
@@ -44,7 +42,7 @@ for i in ${list} ; do neutron router-gateway-clear ${i}; neutron router-delete $
 
 function delete_networks {
 echo "# delete networks #"
-list=`neutron net-list --all-tenants |  ${exclude_empty} | ${exclude_id} |grep -v nova | grep -v private |  awk '{ print $2 }'  `
+list=`neutron net-list --all-tenants |  ${exclude_empty} | ${exclude_id} |grep -v nova | grep -v private | grep -v tenant |  awk '{ print $2 }'  `
 for i in ${list} ; do echo delete network $i; neutron net-delete ${i} ;  done ;
 }
 
@@ -97,13 +95,13 @@ for i in ${list} ; do  echo delete $i;  nova secgroup-delete ${i} ;  done ;
 
 function delete_tenants {
 echo "# delete tenants #"
-list=`keystone tenant-list| grep "[0-9A-Za-z]-" |  awk '{ print $2 }'  | ${exclude_empty} | ${exclude_id} | grep -v demo`
+list=`keystone tenant-list| grep "tempest-" |  awk '{ print $2 }'  | ${exclude_empty} | ${exclude_id} | grep -v demo`
 for i in ${list} ; do  echo delete $i;  keystone tenant-delete ${i} ;  done ;
 }
 
 function delete_users {
 echo "# delete users #"
-list=`keystone user-list| grep "[0-9A-Za-z]-" |  awk '{ print $2 }'  | ${exclude_empty} | ${exclude_id}| grep -v demo`
+list=`keystone user-list| grep "tempest-" |  awk '{ print $2 }'  | ${exclude_empty} | ${exclude_id}| grep -v demo`
 for i in ${list} ; do echo delete $i keystone user-delete ${i} ;done
 }
 
