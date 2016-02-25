@@ -1,5 +1,4 @@
-#!bin/bash
-
+#!/usr/bin/env bash
 # HA network not deleted when router got deleted.
 # This is a known bug and breaks tempest runs
 SLEEP_TIME=60
